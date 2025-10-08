@@ -1,85 +1,741 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Propuesta de Alianza Estratégica - Laboral.AI</title>
-  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
-  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
-  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-</head>
-<body class="bg-gray-50">
-  <div id="root"></div>
-  <script type="text/babel">
-    const { useState } = React;
+import React, { useState } from 'react';
+import { FileText, Building2, Target, Briefcase, Users, TrendingUp, CheckCircle, Calendar, Download } from 'lucide-react';
 
-    const PropuestaAlianza = () => {
-      const [activeSection, setActiveSection] = useState('resumen');
-      const sections = [
-        { id: 'resumen', title: 'Resumen Ejecutivo' },
-        { id: 'contexto', title: 'Contexto' },
-        { id: 'objetivos', title: 'Objetivos' },
-        { id: 'propuesta', title: 'Propuesta de Valor' },
-        { id: 'beneficios', title: 'Beneficios' },
-        { id: 'implementacion', title: 'Implementación' },
-        { id: 'anexos', title: 'Anexos' }
-      ];
+const PropuestaAlianza = () => {
+  const [activeSection, setActiveSection] = useState('resumen');
 
-      const renderContent = () => {
-        switch (activeSection) {
-          case 'resumen':
-            return <p className="text-gray-700">Resumen de la propuesta Laboral.AI – Squad Horizon, orientada a proyectos tecnológicos y sostenibles.</p>;
-          case 'contexto':
-            return <p className="text-gray-700">Contexto sobre sostenibilidad, tecnología y educación ambiental.</p>;
-          case 'objetivos':
-            return <p className="text-gray-700">Objetivo general y específicos de la alianza.</p>;
-          case 'propuesta':
-            return <p className="text-gray-700">Descripción de la propuesta de valor y líneas de acción.</p>;
-          case 'beneficios':
-            return <p className="text-gray-700">Beneficios mutuos e impacto social.</p>;
-          case 'implementacion':
-            return <p className="text-gray-700">Plan de implementación por fases.</p>;
-          case 'anexos':
-            return <p className="text-gray-700">Compromisos, indicadores y contactos.</p>;
-          default:
-            return null;
-        }
-      };
+  const sections = [
+    { id: 'resumen', title: 'Resumen Ejecutivo', icon: FileText },
+    { id: 'contexto', title: 'Contexto', icon: Building2 },
+    { id: 'objetivos', title: 'Objetivos', icon: Target },
+    { id: 'propuesta', title: 'Propuesta de Valor', icon: Briefcase },
+    { id: 'beneficios', title: 'Beneficios', icon: TrendingUp },
+    { id: 'implementacion', title: 'Implementación', icon: CheckCircle },
+    { id: 'anexos', title: 'Anexos', icon: Users }
+  ];
 
-      return (
-        <div className="min-h-screen bg-gray-100">
-          <header className="bg-gradient-to-r from-blue-600 to-green-600 text-white py-6 px-8 shadow">
-            <h1 className="text-3xl font-bold">Propuesta de Alianza Estratégica</h1>
-            <p className="text-blue-100">Laboral.AI - Squad Horizon × [Entidad Aliada]</p>
-          </header>
-          <main className="max-w-6xl mx-auto py-8 grid grid-cols-1 md:grid-cols-4 gap-6 px-4">
-            <aside className="bg-white p-4 rounded-lg shadow">
-              <h2 className="font-bold mb-3 text-gray-800">Contenido</h2>
-              <nav className="space-y-2">
-                {sections.map(sec => (
-                  <button
-                    key={sec.id}
-                    onClick={() => setActiveSection(sec.id)}
-                    className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${activeSection === sec.id ? 'bg-blue-600 text-white' : 'hover:bg-gray-100 text-gray-700'}`}
-                  >
-                    {sec.title}
-                  </button>
+  const renderContent = () => {
+    switch(activeSection) {
+      case 'resumen':
+        return (
+          <div className="space-y-6">
+            <div className="bg-blue-50 border-l-4 border-blue-600 p-6">
+              <h2 className="text-2xl font-bold text-blue-900 mb-4">Resumen Ejecutivo</h2>
+              <p className="text-gray-700 leading-relaxed mb-4">
+                El Squad Horizon de Laboral.AI presenta una propuesta de alianza estratégica orientada a la generación de impacto sostenible mediante la integración de tecnología y responsabilidad ambiental.
+              </p>
+              <div className="grid md:grid-cols-3 gap-4 mt-6">
+                <div className="bg-white p-4 rounded-lg shadow-sm">
+                  <div className="text-blue-600 font-bold text-lg mb-2">Duración</div>
+                  <div className="text-gray-700">12-24 meses</div>
+                </div>
+                <div className="bg-white p-4 rounded-lg shadow-sm">
+                  <div className="text-green-600 font-bold text-lg mb-2">Alcance</div>
+                  <div className="text-gray-700">Nacional</div>
+                </div>
+                <div className="bg-white p-4 rounded-lg shadow-sm">
+                  <div className="text-purple-600 font-bold text-lg mb-2">ODS</div>
+                  <div className="text-gray-700">12, 13, 17</div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-4 text-gray-800">Propósito de la Alianza</h3>
+              <p className="text-gray-700 leading-relaxed">
+                Establecer un marco de colaboración institucional que permita el desarrollo de proyectos tecnológicos con impacto ambiental, fortaleciendo capacidades en jóvenes profesionales y contribuyendo a los objetivos de sostenibilidad de ambas organizaciones.
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h3 className="text-xl font-semibold mb-4 text-gray-800">Áreas de Intervención Prioritarias</h3>
+              <ul className="space-y-2">
+                {['Educación ambiental y tecnológica', 'Innovación verde y economía circular', 'Desarrollo de soluciones digitales sostenibles', 'Voluntariado corporativo y participación comunitaria'].map((area, idx) => (
+                  <li key={idx} className="flex items-start">
+                    <CheckCircle className="w-5 h-5 text-green-600 mr-3 mt-0.5 flex-shrink-0" />
+                    <span className="text-gray-700">{area}</span>
+                  </li>
                 ))}
-              </nav>
-            </aside>
-            <section className="md:col-span-3 bg-white p-6 rounded-lg shadow">
-              {renderContent()}
-            </section>
-          </main>
-          <footer className="bg-gray-800 text-white text-center py-4">
-            <p className="text-sm text-gray-400">© 2024 Laboral.AI - Squad Horizon | Documento de uso institucional</p>
-          </footer>
-        </div>
-      );
-    };
+              </ul>
+            </div>
+          </div>
+        );
 
-    ReactDOM.render(<PropuestaAlianza />, document.getElementById('root'));
-  </script>
-</body>
-</h
+      case 'contexto':
+        return (
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h2 className="text-2xl font-bold text-gray-900 mb-4">Contexto y Justificación</h2>
+              
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold mb-3 text-gray-800">1.1 Sobre Laboral.AI - Squad Horizon</h3>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  Laboral.AI es una plataforma tecnológica orientada al desarrollo de talento y la innovación social. El Squad Horizon se especializa en proyectos de sostenibilidad que integran tecnología, educación ambiental y acción climática.
+                </p>
+                <div className="bg-gray-50 p-4 rounded-lg">
+                  <p className="text-sm text-gray-600 font-semibold mb-2">Capacidades Técnicas:</p>
+                  <ul className="text-sm text-gray-700 space-y-1">
+                    <li>• Desarrollo de aplicaciones web y móviles</li>
+                    <li>• Análisis de datos e inteligencia artificial</li>
+                    <li>• Diseño de campañas digitales de impacto</li>
+                    <li>• Gestión de comunidades y redes sociales</li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="mb-6">
+                <h3 className="text-xl font-semibold mb-3 text-gray-800">1.2 Diagnóstico y Oportunidad</h3>
+                <p className="text-gray-700 leading-relaxed mb-4">
+                  La crisis climática global y los compromisos internacionales del Perú exigen la articulación de esfuerzos entre el sector público, privado y la sociedad civil. Existe una brecha importante en:
+                </p>
+                <ul className="space-y-2 text-gray-700">
+                  <li className="flex items-start">
+                    <span className="text-red-600 font-bold mr-2">•</span>
+                    <span>Acceso a educación ambiental de calidad para jóvenes</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-red-600 font-bold mr-2">•</span>
+                    <span>Herramientas digitales para la gestión ambiental local</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-red-600 font-bold mr-2">•</span>
+                    <span>Espacios de participación juvenil en sostenibilidad</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-red-600 font-bold mr-2">•</span>
+                    <span>Vinculación entre innovación tecnológica y acción climática</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-3 text-gray-800">1.3 Marco Normativo y Alineación Estratégica</h3>
+                <p className="text-gray-700 leading-relaxed mb-3">
+                  Esta alianza se alinea con:
+                </p>
+                <div className="grid md:grid-cols-2 gap-4">
+                  <div className="bg-blue-50 p-4 rounded-lg">
+                    <p className="font-semibold text-blue-900 mb-2">Marco Nacional</p>
+                    <ul className="text-sm text-gray-700 space-y-1">
+                      <li>• Ley General del Ambiente</li>
+                      <li>• Política Nacional del Ambiente</li>
+                      <li>• Ley Marco sobre Cambio Climático</li>
+                    </ul>
+                  </div>
+                  <div className="bg-green-50 p-4 rounded-lg">
+                    <p className="font-semibold text-green-900 mb-2">Marco Internacional</p>
+                    <ul className="text-sm text-gray-700 space-y-1">
+                      <li>• Agenda 2030 - ODS</li>
+                      <li>• Acuerdo de París</li>
+                      <li>• Década de Acción por el Clima</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'objetivos':
+        return (
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Objetivos de la Alianza</h2>
+              
+              <div className="mb-8">
+                <div className="bg-gradient-to-r from-blue-600 to-blue-700 text-white p-6 rounded-lg mb-6">
+                  <h3 className="text-xl font-bold mb-3">Objetivo General</h3>
+                  <p className="text-blue-50 leading-relaxed">
+                    Establecer una alianza estratégica de colaboración interinstitucional entre Laboral.AI - Squad Horizon y [Entidad Aliada] para el diseño, desarrollo e implementación de proyectos innovadores en materia de sostenibilidad ambiental, educación verde y desarrollo tecnológico con impacto social, contribuyendo al cumplimiento de los Objetivos de Desarrollo Sostenible y al fortalecimiento de capacidades en jóvenes profesionales.
+                  </p>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">Objetivos Específicos</h3>
+                <div className="space-y-4">
+                  {[
+                    {
+                      num: '2.1',
+                      title: 'Formación y Capacitación',
+                      desc: 'Diseñar e implementar programas de formación en sostenibilidad, innovación verde y tecnologías aplicadas al medio ambiente, beneficiando al menos a 200 jóvenes profesionales en el primer año.',
+                      indicador: 'Número de participantes capacitados, nivel de satisfacción ≥ 4.5/5'
+                    },
+                    {
+                      num: '2.2',
+                      title: 'Desarrollo Tecnológico',
+                      desc: 'Desarrollar al menos 3 soluciones tecnológicas (aplicaciones, plataformas digitales o herramientas de análisis) orientadas a la gestión ambiental, economía circular o educación sostenible.',
+                      indicador: 'Número de prototipos desarrollados y puestos en operación'
+                    },
+                    {
+                      num: '2.3',
+                      title: 'Impacto Comunitario',
+                      desc: 'Ejecutar proyectos de intervención comunitaria que promuevan prácticas sostenibles en al menos 5 comunidades, colegios o empresas.',
+                      indicador: 'Número de comunidades intervenidas, personas beneficiadas directamente'
+                    },
+                    {
+                      num: '2.4',
+                      title: 'Comunicación y Sensibilización',
+                      desc: 'Diseñar y ejecutar campañas de comunicación digital que alcancen a un mínimo de 50,000 personas, promoviendo cultura ambiental y acción por el clima.',
+                      indicador: 'Alcance digital, engagement rate, conversiones a acciones concretas'
+                    },
+                    {
+                      num: '2.5',
+                      title: 'Fortalecimiento Institucional',
+                      desc: 'Posicionar a ambas organizaciones como referentes en innovación sostenible mediante la documentación y difusión de buenas prácticas.',
+                      indicador: 'Publicaciones, menciones en medios, reconocimientos obtenidos'
+                    }
+                  ].map((obj) => (
+                    <div key={obj.num} className="border-l-4 border-green-500 bg-gray-50 p-4 rounded-r-lg">
+                      <h4 className="font-bold text-gray-900 mb-2">{obj.num} {obj.title}</h4>
+                      <p className="text-gray-700 mb-2">{obj.desc}</p>
+                      <div className="bg-white p-2 rounded mt-2">
+                        <p className="text-xs text-gray-600"><strong>Indicador:</strong> {obj.indicador}</p>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'propuesta':
+        return (
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Propuesta de Valor</h2>
+              
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">3.1 Líneas Estratégicas de Acción</h3>
+                <div className="space-y-6">
+                  <div className="bg-blue-50 p-5 rounded-lg border-l-4 border-blue-600">
+                    <h4 className="font-bold text-blue-900 mb-3">Línea 1: Educación Ambiental y Desarrollo de Capacidades</h4>
+                    <p className="text-gray-700 mb-3">Implementación de programas formativos especializados:</p>
+                    <ul className="space-y-2 text-gray-700 text-sm">
+                      <li>• Bootcamps intensivos en tecnologías verdes (6-8 semanas)</li>
+                      <li>• Talleres de economía circular y gestión de residuos</li>
+                      <li>• Certificaciones en herramientas digitales para sostenibilidad</li>
+                      <li>• Webinars mensuales con expertos nacionales e internacionales</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-green-50 p-5 rounded-lg border-l-4 border-green-600">
+                    <h4 className="font-bold text-green-900 mb-3">Línea 2: Innovación Tecnológica con Propósito</h4>
+                    <p className="text-gray-700 mb-3">Desarrollo de soluciones digitales escalables:</p>
+                    <ul className="space-y-2 text-gray-700 text-sm">
+                      <li>• Aplicación móvil para gestión de reciclaje comunitario</li>
+                      <li>• Dashboard de monitoreo de huella de carbono para empresas</li>
+                      <li>• Plataforma educativa gamificada sobre sostenibilidad</li>
+                      <li>• Sistema de marketplace de economía circular</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-purple-50 p-5 rounded-lg border-l-4 border-purple-600">
+                    <h4 className="font-bold text-purple-900 mb-3">Línea 3: Comunicación e Incidencia Social</h4>
+                    <p className="text-gray-700 mb-3">Estrategias de sensibilización y movilización:</p>
+                    <ul className="space-y-2 text-gray-700 text-sm">
+                      <li>• Campañas digitales de alto impacto en redes sociales</li>
+                      <li>• Producción de contenido educativo multimedia</li>
+                      <li>• Eventos públicos y jornadas de acción climática</li>
+                      <li>• Alianzas con influencers y voceros ambientales</li>
+                    </ul>
+                  </div>
+
+                  <div className="bg-orange-50 p-5 rounded-lg border-l-4 border-orange-600">
+                    <h4 className="font-bold text-orange-900 mb-3">Línea 4: Voluntariado y Participación Comunitaria</h4>
+                    <p className="text-gray-700 mb-3">Activación de comunidades y acción directa:</p>
+                    <ul className="space-y-2 text-gray-700 text-sm">
+                      <li>• Programa de voluntariado corporativo estructurado</li>
+                      <li>• Jornadas de limpieza y reforestación</li>
+                      <li>• Talleres en colegios y comunidades vulnerables</li>
+                      <li>• Red de embajadores ambientales juveniles</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">3.2 Ventajas Competitivas de la Alianza</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {[
+                    { title: 'Complementariedad', desc: 'Experiencia técnica de Laboral.AI + Alcance institucional de la entidad aliada' },
+                    { title: 'Escalabilidad', desc: 'Soluciones replicables en diferentes regiones y contextos' },
+                    { title: 'Medición de Impacto', desc: 'Indicadores claros y metodología de evaluación continua' },
+                    { title: 'Sostenibilidad Financiera', desc: 'Modelo de cofinanciamiento y búsqueda de fondos externos' }
+                  ].map((ventaja, idx) => (
+                    <div key={idx} className="bg-gradient-to-br from-gray-50 to-gray-100 p-4 rounded-lg border border-gray-200">
+                      <h4 className="font-bold text-gray-900 mb-2">{ventaja.title}</h4>
+                      <p className="text-sm text-gray-700">{ventaja.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'beneficios':
+        return (
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Beneficios Mutuos</h2>
+              
+              <div className="grid md:grid-cols-2 gap-6 mb-8">
+                <div className="bg-gradient-to-br from-blue-50 to-blue-100 p-6 rounded-lg border-2 border-blue-200">
+                  <h3 className="text-xl font-bold text-blue-900 mb-4">Para Laboral.AI - Squad Horizon</h3>
+                  <div className="space-y-3">
+                    {[
+                      { title: 'Fortalecimiento Técnico', items: ['Acceso a capacitaciones especializadas', 'Mentoría de expertos del sector', 'Certificaciones y validaciones institucionales'] },
+                      { title: 'Desarrollo de Proyectos', items: ['Respaldo institucional en iniciativas', 'Acceso a recursos y financiamiento', 'Espacios de prueba y validación'] },
+                      { title: 'Red y Posicionamiento', items: ['Conexión con ecosistema de sostenibilidad', 'Visibilidad en eventos y medios', 'Credibilidad institucional'] },
+                      { title: 'Experiencia Profesional', items: ['Proyectos reales en portafolio', 'Trabajo con stakeholders clave', 'Desarrollo de soft skills'] }
+                    ].map((beneficio, idx) => (
+                      <div key={idx} className="bg-white p-3 rounded shadow-sm">
+                        <p className="font-semibold text-blue-800 mb-2">{beneficio.title}</p>
+                        <ul className="text-sm text-gray-700 space-y-1">
+                          {beneficio.items.map((item, i) => (
+                            <li key={i}>• {item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-green-50 to-green-100 p-6 rounded-lg border-2 border-green-200">
+                  <h3 className="text-xl font-bold text-green-900 mb-4">Para [Entidad Aliada]</h3>
+                  <div className="space-y-3">
+                    {[
+                      { title: 'Innovación y Modernización', items: ['Acceso a talento tecnológico joven', 'Soluciones digitales sin costo inicial', 'Actualización en tendencias tech'] },
+                      { title: 'Ampliación de Impacto', items: ['Mayor alcance en población joven', 'Diversificación de canales de comunicación', 'Proyectos con mayor visibilidad'] },
+                      { title: 'Cumplimiento de Objetivos', items: ['Avance en ODS 12, 13 y 17', 'Métricas de impacto cuantificables', 'Reportes y documentación de logros'] },
+                      { title: 'Fortalecimiento Institucional', items: ['Imagen de organización innovadora', 'Nuevas alianzas y sinergias', 'Caso de éxito replicable'] }
+                    ].map((beneficio, idx) => (
+                      <div key={idx} className="bg-white p-3 rounded shadow-sm">
+                        <p className="font-semibold text-green-800 mb-2">{beneficio.title}</p>
+                        <ul className="text-sm text-gray-700 space-y-1">
+                          {beneficio.items.map((item, i) => (
+                            <li key={i}>• {item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-indigo-50 to-purple-50 p-6 rounded-lg border-2 border-indigo-200">
+                <h3 className="text-xl font-bold text-indigo-900 mb-4">Beneficios para la Sociedad</h3>
+                <div className="grid md:grid-cols-3 gap-4">
+                  {[
+                    { icon: '🌍', title: 'Impacto Ambiental', desc: 'Reducción de huella de carbono, aumento de reciclaje' },
+                    { icon: '👥', title: 'Impacto Social', desc: 'Empleabilidad juvenil, formación de agentes de cambio' },
+                    { icon: '📈', title: 'Impacto Económico', desc: 'Economía circular, nuevos modelos de negocio verde' }
+                  ].map((item, idx) => (
+                    <div key={idx} className="bg-white p-4 rounded-lg text-center">
+                      <div className="text-3xl mb-2">{item.icon}</div>
+                      <h4 className="font-bold text-gray-900 mb-2">{item.title}</h4>
+                      <p className="text-sm text-gray-600">{item.desc}</p>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'implementacion':
+        return (
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Plan de Implementación</h2>
+              
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">5.1 Fases del Proyecto</h3>
+                <div className="space-y-4">
+                  {[
+                    {
+                      fase: 'Fase 1: Planificación y Diseño',
+                      duracion: 'Meses 1-2',
+                      actividades: [
+                        'Firma formal de convenio de cooperación',
+                        'Conformación de equipo técnico mixto',
+                        'Diagnóstico de necesidades y oportunidades',
+                        'Diseño detallado de proyectos piloto',
+                        'Elaboración de plan de trabajo y cronograma'
+                      ],
+                      color: 'blue'
+                    },
+                    {
+                      fase: 'Fase 2: Desarrollo y Capacitación',
+                      duracion: 'Meses 3-6',
+                      actividades: [
+                        'Lanzamiento de programa de formación',
+                        'Desarrollo de prototipos tecnológicos',
+                        'Pruebas de usabilidad y ajustes',
+                        'Capacitación de facilitadores',
+                        'Preparación de materiales educativos'
+                      ],
+                      color: 'green'
+                    },
+                    {
+                      fase: 'Fase 3: Implementación y Escalamiento',
+                      duracion: 'Meses 7-10',
+                      actividades: [
+                        'Lanzamiento oficial de soluciones',
+                        'Intervención en comunidades piloto',
+                        'Campañas de comunicación masiva',
+                        'Actividades de voluntariado',
+                        'Monitoreo continuo de indicadores'
+                      ],
+                      color: 'purple'
+                    },
+                    {
+                      fase: 'Fase 4: Evaluación y Sistematización',
+                      duracion: 'Meses 11-12',
+                      actividades: [
+                        'Evaluación de impacto y resultados',
+                        'Sistematización de aprendizajes',
+                        'Elaboración de informe final',
+                        'Evento de cierre y reconocimientos',
+                        'Planificación de continuidad'
+                      ],
+                      color: 'orange'
+                    }
+                  ].map((fase, idx) => (
+                    <div key={idx} className={`border-l-4 border-${fase.color}-500 bg-${fase.color}-50 p-5 rounded-r-lg`}>
+                      <div className="flex justify-between items-start mb-3">
+                        <h4 className="font-bold text-gray-900 text-lg">{fase.fase}</h4>
+                        <span className={`bg-${fase.color}-600 text-white px-3 py-1 rounded-full text-sm font-semibold`}>
+                          {fase.duracion}
+                        </span>
+                      </div>
+                      <ul className="space-y-1 text-sm text-gray-700">
+                        {fase.actividades.map((act, i) => (
+                          <li key={i} className="flex items-start">
+                            <CheckCircle className="w-4 h-4 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                            <span>{act}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">5.2 Estructura de Gobernanza</h3>
+                <div className="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                  <div className="space-y-4">
+                    <div className="bg-white p-4 rounded-lg shadow-sm">
+                      <h4 className="font-bold text-gray-900 mb-2">Comité Directivo</h4>
+                      <p className="text-sm text-gray-700 mb-2">Representantes de alto nivel de ambas organizaciones</p>
+                      <p className="text-xs text-gray-600"><strong>Responsabilidad:</strong> Toma de decisiones estratégicas, aprobación de presupuesto, seguimiento general</p>
+                      <p className="text-xs text-gray-600"><strong>Periodicidad:</strong> Reuniones trimestrales</p>
+                    </div>
+
+                    <div className="bg-white p-4 rounded-lg shadow-sm">
+                      <h4 className="font-bold text-gray-900 mb-2">Equipo Técnico Operativo</h4>
+                      <p className="text-sm text-gray-700 mb-2">Coordinadores de proyecto, desarrolladores, especialistas ambientales</p>
+                      <p className="text-xs text-gray-600"><strong>Responsabilidad:</strong> Ejecución de actividades, desarrollo de entregables, reporte de avances</p>
+                      <p className="text-xs text-gray-600"><strong>Periodicidad:</strong> Reuniones semanales/quincenales</p>
+                    </div>
+
+                    <div className="bg-white p-4 rounded-lg shadow-sm">
+                      <h4 className="font-bold text-gray-900 mb-2">Comité de Seguimiento y Evaluación</h4>
+                      <p className="text-sm text-gray-700 mb-2">Analistas de datos, evaluadores externos</p>
+                      <p className="text-xs text-gray-600"><strong>Responsabilidad:</strong> Monitoreo de indicadores, evaluación de impacto, recomendaciones de mejora</p>
+                      <p className="text-xs text-gray-600"><strong>Periodicidad:</strong> Evaluaciones bimestrales</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">5.3 Recursos y Presupuesto Estimado</h3>
+                <div className="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                  <div className="overflow-x-auto">
+                    <table className="min-w-full bg-white rounded-lg overflow-hidden">
+                      <thead className="bg-gray-800 text-white">
+                        <tr>
+                          <th className="px-4 py-3 text-left">Rubro</th>
+                          <th className="px-4 py-3 text-left">Descripción</th>
+                          <th className="px-4 py-3 text-right">Aporte Laboral.AI</th>
+                          <th className="px-4 py-3 text-right">Aporte Entidad</th>
+                        </tr>
+                      </thead>
+                      <tbody className="text-sm">
+                        <tr className="border-b">
+                          <td className="px-4 py-3 font-semibold">Recursos Humanos</td>
+                          <td className="px-4 py-3">Equipo técnico, coordinación</td>
+                          <td className="px-4 py-3 text-right">Equipo Squad</td>
+                          <td className="px-4 py-3 text-right">Mentores/Asesores</td>
+                        </tr>
+                        <tr className="border-b bg-gray-50">
+                          <td className="px-4 py-3 font-semibold">Tecnología</td>
+                          <td className="px-4 py-3">Desarrollo, hosting, licencias</td>
+                          <td className="px-4 py-3 text-right">100%</td>
+                          <td className="px-4 py-3 text-right">-</td>
+                        </tr>
+                        <tr className="border-b">
+                          <td className="px-4 py-3 font-semibold">Capacitación</td>
+                          <td className="px-4 py-3">Talleres, materiales, certificados</td>
+                          <td className="px-4 py-3 text-right">Logística digital</td>
+                          <td className="px-4 py-3 text-right">Contenidos/Facilitadores</td>
+                        </tr>
+                        <tr className="border-b bg-gray-50">
+                          <td className="px-4 py-3 font-semibold">Comunicación</td>
+                          <td className="px-4 py-3">Campañas, diseño, contenido</td>
+                          <td className="px-4 py-3 text-right">Producción digital</td>
+                          <td className="px-4 py-3 text-right">Difusión institucional</td>
+                        </tr>
+                        <tr className="border-b">
+                          <td className="px-4 py-3 font-semibold">Eventos</td>
+                          <td className="px-4 py-3">Lanzamientos, jornadas</td>
+                          <td className="px-4 py-3 text-right">Gestión/Convocatoria</td>
+                          <td className="px-4 py-3 text-right">Espacios/Logística</td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <p className="text-xs text-gray-600 mt-4 italic">
+                    * Los aportes se realizarán principalmente en especie (tiempo, recursos técnicos, espacios, etc.)
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+
+      case 'anexos':
+        return (
+          <div className="space-y-6">
+            <div className="bg-white p-6 rounded-lg shadow-md">
+              <h2 className="text-2xl font-bold text-gray-900 mb-6">Anexos y Documentación</h2>
+              
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">6.1 Marco de Compromisos</h3>
+                
+                <div className="bg-blue-50 border-l-4 border-blue-600 p-5 mb-4">
+                  <h4 className="font-bold text-blue-900 mb-3">Compromisos de Laboral.AI - Squad Horizon</h4>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>Aportar el componente tecnológico completo: análisis, diseño, desarrollo, implementación y mantenimiento de soluciones digitales</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>Gestionar la convocatoria, selección y acompañamiento de participantes en programas de formación</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>Diseñar e implementar estrategias de comunicación digital y gestión de redes sociales</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>Elaborar reportes periódicos de avance, métricas de impacto y documentación de proyectos</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-blue-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>Movilizar a la comunidad de Laboral.AI para participar activamente en las iniciativas conjuntas</span>
+                    </li>
+                  </ul>
+                </div>
+
+                <div className="bg-green-50 border-l-4 border-green-600 p-5">
+                  <h4 className="font-bold text-green-900 mb-3">Compromisos de [Entidad Aliada]</h4>
+                  <ul className="space-y-2 text-gray-700">
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>Proporcionar acompañamiento técnico especializado en temas ambientales y de sostenibilidad</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>Facilitar el acceso a programas de capacitación, certificaciones y recursos educativos institucionales</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>Brindar apoyo logístico para la realización de eventos, talleres y actividades de campo</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>Otorgar el respaldo institucional y uso de imagen corporativa en proyectos conjuntos</span>
+                    </li>
+                    <li className="flex items-start">
+                      <CheckCircle className="w-5 h-5 text-green-600 mr-2 mt-0.5 flex-shrink-0" />
+                      <span>Facilitar la vinculación con otras organizaciones del ecosistema de sostenibilidad</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">6.2 Indicadores de Éxito</h3>
+                <div className="grid md:grid-cols-2 gap-4">
+                  {[
+                    { categoria: 'Impacto Cuantitativo', indicadores: ['N° de personas capacitadas', 'N° de soluciones tecnológicas desarrolladas', 'N° de comunidades beneficiadas', 'Alcance digital (impresiones, engagement)'] },
+                    { categoria: 'Impacto Cualitativo', indicadores: ['Nivel de satisfacción de participantes', 'Calidad de soluciones desarrolladas', 'Testimonios y casos de éxito', 'Reconocimientos obtenidos'] },
+                    { categoria: 'Sostenibilidad', indicadores: ['Proyectos con continuidad post-alianza', 'Nuevas alianzas generadas', 'Modelo replicable documentado', 'Sostenibilidad financiera alcanzada'] },
+                    { categoria: 'Innovación', indicadores: ['Soluciones escalables implementadas', 'Nuevas metodologías probadas', 'Publicaciones y difusión científica', 'Propiedad intelectual generada'] }
+                  ].map((cat, idx) => (
+                    <div key={idx} className="bg-gradient-to-br from-gray-50 to-gray-100 p-4 rounded-lg border border-gray-200">
+                      <h4 className="font-bold text-gray-900 mb-3">{cat.categoria}</h4>
+                      <ul className="space-y-1 text-sm text-gray-700">
+                        {cat.indicadores.map((ind, i) => (
+                          <li key={i}>• {ind}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="mb-8">
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">6.3 Vigencia y Renovación</h3>
+                <div className="bg-gray-50 p-5 rounded-lg border border-gray-200">
+                  <div className="space-y-3 text-gray-700">
+                    <p><strong>Vigencia inicial:</strong> 12 meses a partir de la fecha de firma del convenio</p>
+                    <p><strong>Renovación automática:</strong> Por periodos anuales adicionales, previa evaluación de resultados y acuerdo mutuo</p>
+                    <p><strong>Cláusula de terminación:</strong> Cualquiera de las partes podrá dar por terminado el convenio con 60 días de anticipación, mediante comunicación escrita</p>
+                    <p><strong>Propiedad intelectual:</strong> Los productos desarrollados conjuntamente serán de uso compartido, con reconocimiento expreso de ambas partes</p>
+                  </div>
+                </div>
+              </div>
+
+              <div>
+                <h3 className="text-xl font-semibold mb-4 text-gray-800">6.4 Información de Contacto</h3>
+                <div className="grid md:grid-cols-2 gap-6">
+                  <div className="bg-blue-50 p-5 rounded-lg border-2 border-blue-200">
+                    <h4 className="font-bold text-blue-900 mb-3">Laboral.AI - Squad Horizon</h4>
+                    <div className="space-y-2 text-sm text-gray-700">
+                      <p><strong>Representante:</strong> [Nombre del Líder del Squad]</p>
+                      <p><strong>Cargo:</strong> Coordinador Squad Horizon</p>
+                      <p><strong>Correo:</strong> horizon@laboral.ai</p>
+                      <p><strong>Teléfono:</strong> [Número de contacto]</p>
+                      <p><strong>Dirección:</strong> [Dirección institucional]</p>
+                    </div>
+                  </div>
+
+                  <div className="bg-green-50 p-5 rounded-lg border-2 border-green-200">
+                    <h4 className="font-bold text-green-900 mb-3">[Entidad Aliada]</h4>
+                    <div className="space-y-2 text-sm text-gray-700">
+                      <p><strong>Representante:</strong> ________________________</p>
+                      <p><strong>Cargo:</strong> ________________________</p>
+                      <p><strong>Correo:</strong> ________________________</p>
+                      <p><strong>Teléfono:</strong> ________________________</p>
+                      <p><strong>Dirección:</strong> ________________________</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="bg-gradient-to-r from-blue-600 to-green-600 text-white p-8 rounded-lg shadow-lg text-center">
+              <h3 className="text-2xl font-bold mb-4">Declaración de Compromiso</h3>
+              <p className="text-blue-50 leading-relaxed max-w-3xl mx-auto mb-6">
+                Las partes firmantes manifiestan su voluntad expresa de trabajar conjuntamente en el cumplimiento de los objetivos planteados, actuando con transparencia, responsabilidad y compromiso ético en todas las acciones derivadas de esta alianza estratégica.
+              </p>
+              <div className="grid md:grid-cols-2 gap-8 mt-8 max-w-2xl mx-auto">
+                <div className="bg-white bg-opacity-20 p-6 rounded-lg">
+                  <p className="font-semibold mb-4">Por Laboral.AI - Squad Horizon</p>
+                  <div className="border-t-2 border-white pt-4 mt-8">
+                    <p className="text-sm">Firma y Sello</p>
+                  </div>
+                </div>
+                <div className="bg-white bg-opacity-20 p-6 rounded-lg">
+                  <p className="font-semibold mb-4">Por [Entidad Aliada]</p>
+                  <div className="border-t-2 border-white pt-4 mt-8">
+                    <p className="text-sm">Firma y Sello</p>
+                  </div>
+                </div>
+              </div>
+              <p className="text-sm text-blue-100 mt-6">
+                Lugar y fecha: ________________________
+              </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-lg shadow-md border-t-4 border-blue-600">
+              <div className="flex items-center justify-between">
+                <div>
+                  <h3 className="text-lg font-bold text-gray-900 mb-2">Descargar Propuesta Completa</h3>
+                  <p className="text-sm text-gray-600">Documento oficial para presentación institucional</p>
+                </div>
+                <button className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg flex items-center gap-2 transition-colors">
+                  <Download className="w-5 h-5" />
+                  Descargar PDF
+                </button>
+              </div>
+            </div>
+          </div>
+        );
+
+      default:
+        return null;
+    }
+  };
+
+  return (
+    <div className="min-h-screen bg-gradient-to-br from-gray-50 to-gray-100">
+      <div className="bg-gradient-to-r from-blue-600 to-green-600 text-white py-8 px-6 shadow-lg">
+        <div className="max-w-7xl mx-auto">
+          <div className="flex items-center gap-4 mb-4">
+            <FileText className="w-12 h-12" />
+            <div>
+              <h1 className="text-3xl font-bold">Propuesta de Alianza Estratégica</h1>
+              <p className="text-blue-100">Laboral.AI - Squad Horizon × [Entidad Aliada]</p>
+            </div>
+          </div>
+          <div className="bg-white bg-opacity-20 rounded-lg p-4 mt-4">
+            <p className="text-sm text-blue-50">
+              Documento oficial para la presentación de propuestas de colaboración institucional en materia de sostenibilidad, innovación tecnológica y desarrollo social.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="max-w-7xl mx-auto py-8 px-6">
+        <div className="grid lg:grid-cols-4 gap-6">
+          <div className="lg:col-span-1">
+            <div className="bg-white rounded-lg shadow-md p-4 sticky top-4">
+              <h2 className="font-bold text-gray-900 mb-4">Contenido</h2>
+              <nav className="space-y-1">
+                {sections.map((section) => {
+                  const Icon = section.icon;
+                  return (
+                    <button
+                      key={section.id}
+                      onClick={() => setActiveSection(section.id)}
+                      className={`w-full text-left px-4 py-3 rounded-lg flex items-center gap-3 transition-colors ${
+                        activeSection === section.id
+                          ? 'bg-blue-600 text-white'
+                          : 'hover:bg-gray-100 text-gray-700'
+                      }`}
+                    >
+                      <Icon className="w-5 h-5 flex-shrink-0" />
+                      <span className="text-sm font-medium">{section.title}</span>
+                    </button>
+                  );
+                })}
+              </nav>
+            </div>
+          </div>
+
+          <div className="lg:col-span-3">
+            {renderContent()}
+          </div>
+        </div>
+      </div>
+
+      <div className="bg-gray-800 text-white py-6 px-6 mt-12">
+        <div className="max-w-7xl mx-auto text-center">
+          <p className="text-sm text-gray-400">
+            © 2024 Laboral.AI - Squad Horizon | Documento de uso institucional
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default PropuestaAlianza;
