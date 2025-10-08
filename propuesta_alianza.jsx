@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Propuesta de Alianza Estratégica - Laboral.AI</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <script src="https://unpkg.com/react@17/umd/react.development.js"></script>
+  <script src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+</head>
+<body class="bg-gray-50">
+  <div id="root"></div>
+  <script type="text/babel">
+    const { useState } = React;
+
+    const PropuestaAlianza = () => {
+      const [activeSection, setActiveSection] = useState('resumen');
+      const sections = [
+        { id: 'resumen', title: 'Resumen Ejecutivo' },
+        { id: 'contexto', title: 'Contexto' },
+        { id: 'objetivos', title: 'Objetivos' },
+        { id: 'propuesta', title: 'Propuesta de Valor' },
+        { id: 'beneficios', title: 'Beneficios' },
+        { id: 'implementacion', title: 'Implementación' },
+        { id: 'anexos', title: 'Anexos' }
+      ];
+
+      const renderContent = () => {
+        switch (activeSection) {
+          case 'resumen':
+            return <p className="text-gray-700">Resumen de la propuesta Laboral.AI – Squad Horizon, orientada a proyectos tecnológicos y sostenibles.</p>;
+          case 'contexto':
+            return <p className="text-gray-700">Contexto sobre sostenibilidad, tecnología y educación ambiental.</p>;
+          case 'objetivos':
+            return <p className="text-gray-700">Objetivo general y específicos de la alianza.</p>;
+          case 'propuesta':
+            return <p className="text-gray-700">Descripción de la propuesta de valor y líneas de acción.</p>;
+          case 'beneficios':
+            return <p className="text-gray-700">Beneficios mutuos e impacto social.</p>;
+          case 'implementacion':
+            return <p className="text-gray-700">Plan de implementación por fases.</p>;
+          case 'anexos':
+            return <p className="text-gray-700">Compromisos, indicadores y contactos.</p>;
+          default:
+            return null;
+        }
+      };
+
+      return (
+        <div className="min-h-screen bg-gray-100">
+          <header className="bg-gradient-to-r from-blue-600 to-green-600 text-white py-6 px-8 shadow">
+            <h1 className="text-3xl font-bold">Propuesta de Alianza Estratégica</h1>
+            <p className="text-blue-100">Laboral.AI - Squad Horizon × [Entidad Aliada]</p>
+          </header>
+          <main className="max-w-6xl mx-auto py-8 grid grid-cols-1 md:grid-cols-4 gap-6 px-4">
+            <aside className="bg-white p-4 rounded-lg shadow">
+              <h2 className="font-bold mb-3 text-gray-800">Contenido</h2>
+              <nav className="space-y-2">
+                {sections.map(sec => (
+                  <button
+                    key={sec.id}
+                    onClick={() => setActiveSection(sec.id)}
+                    className={`w-full text-left px-3 py-2 rounded-lg transition-colors ${activeSection === sec.id ? 'bg-blue-600 text-white' : 'hover:bg-gray-100 text-gray-700'}`}
+                  >
+                    {sec.title}
+                  </button>
+                ))}
+              </nav>
+            </aside>
+            <section className="md:col-span-3 bg-white p-6 rounded-lg shadow">
+              {renderContent()}
+            </section>
+          </main>
+          <footer className="bg-gray-800 text-white text-center py-4">
+            <p className="text-sm text-gray-400">© 2024 Laboral.AI - Squad Horizon | Documento de uso institucional</p>
+          </footer>
+        </div>
+      );
+    };
+
+    ReactDOM.render(<PropuestaAlianza />, document.getElementById('root'));
+  </script>
+</body>
+</h
